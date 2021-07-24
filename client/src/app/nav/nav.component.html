@@ -1,0 +1,54 @@
+
+
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">Akusesu</a>
+
+        <ul class="navbar-nav mr-auto" *ngIf="loggedIn">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Matches</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Lists</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Messages</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="logout()" >Salir</a>
+            </li>
+        </ul>
+
+
+        <div class="dropdown" *ngIf="loggedIn" dropdown>
+            <a class="dropdown-toggle text-light" dropdownToggle>Bienvenido!</a>
+            <div class="dropdown-menu mt-3" *dropdownMenu>
+
+                <a class="dropwdown-item">Modificar Perfil</a>
+
+                <div class="dropdown-divider"></div>
+
+                <a class="dropwdown-item" (click)="logout()" >Salir</a>
+            </div>
+        </div>
+
+
+<form *ngIf="!loggedIn" #loginForm="ngForm" class="form-inline mt-2 mt-md-0" (ngSubmit)="login()" autocomplete="off">
+<input 
+    name="username"
+    [(ngModel)]="model.username"
+
+    class="form-control mr-sm-2" 
+    type="text" 
+    placeholder="Usuario">
+<input 
+    name="password"
+    [(ngModel)]="model.password"
+
+    class="form-control mr-sm-2" 
+    type="password" 
+    placeholder="Clave">
+<button class="form-control mr-sm-2" type="submit">Ingresar</button>
+
+</form>
+        
