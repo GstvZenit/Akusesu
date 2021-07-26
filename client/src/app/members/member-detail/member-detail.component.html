@@ -1,1 +1,56 @@
-<p>member-detail works!</p>
+<div class="row" *ngIf="member">
+   <div class="col-4">
+       <div class="card">
+           <img src="{{member.photoUrl || './assets/user.png'}}" alt="{{member.knownAs}}" class="card-img-top img-thumbnail">
+           <div class="card-body">
+                <div>
+                    <strong>Localidad:</strong>
+                    <p>{{member.city}}, {{member.country}}</p>
+                </div>
+                <div>
+                    <strong>Edad:</strong>
+                    <p>{{member.age}}</p>
+                </div>  
+                <div>
+                    <strong>Ultimo inicio de sesion:</strong>
+                    <p>{{member.lastActive}}</p>
+                </div> 
+                <div>
+                    <strong>Miembro desde:</strong>
+                    <p>{{member.created}}</p>
+                </div>       
+           </div>
+            <div class="card-footer">
+                <div class="btn-group d-flex">
+            
+                    <button class="btn btn-primary">Like</button>
+
+
+                    <button class="btn btn-success">Mensaje</button>
+                </div>
+            </div>
+
+       </div>
+   </div> 
+
+   <div class="col-8">
+       <tabset class="member-tabset">
+            <tab heading='Acerca de {{member.knownAs}}'>
+                <h4>Descripcion</h4>
+                <p>{{member.introduction}}</p>
+            </tab>
+            <tab heading='Intereses'>
+                <h4>Intereses</h4>
+                <p>{{member.interests}}</p>
+            </tab>
+            <tab heading='Fotos'>
+                <p>Fotos vendra aqui</p>
+            </tab>
+            <tab heading='Mensaje'>
+                <p>Mensajes vendran aqui</p>
+            </tab>
+
+       </tabset>
+   </div>
+
+</div>
