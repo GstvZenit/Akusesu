@@ -29,7 +29,7 @@
 
             <img src="{{user.photoUrl || './assets/user.png'}}" alt="{{user.username}}">
 
-            <a class="dropdown-toggle text-light ml-2" dropdownToggle>Bienvenido/a {{user.username | titlecase}}!</a>
+            <a class="dropdown-toggle text-light ml-2" dropdownToggle>Bienvenido/a {{user.knownAs | titlecase}}!</a>
             <div class="dropdown-menu mt-3" *dropdownMenu>
 
                 <a routerLink='/member/edit' class="dropwdown-item">Modificar Perfil</a>
