@@ -11,6 +11,7 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 import { strings as stringsEs } from "ngx-timeago/language-strings/es";
 import { TimeagoModule, TimeagoIntl} from 'ngx-timeago';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 
@@ -29,7 +30,8 @@ import { TimeagoModule, TimeagoIntl} from 'ngx-timeago';
     BsDatepickerModule.forRoot(),
     PaginationModule.forRoot(),
     ButtonsModule.forRoot(),
-    TimeagoModule.forRoot()
+    TimeagoModule.forRoot(),
+    ModalModule.forRoot()
   ],
   exports: [
     BsDropdownModule,
@@ -41,6 +43,7 @@ import { TimeagoModule, TimeagoIntl} from 'ngx-timeago';
     PaginationModule,
     ButtonsModule,
     TimeagoModule,
+    ModalModule,
   ]
 })
 export class SharedModule { }
