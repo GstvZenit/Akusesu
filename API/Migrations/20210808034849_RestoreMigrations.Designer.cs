@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace API.Data.Migrations
+namespace API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210730010311_GroupsAdded")]
-    partial class GroupsAdded
+    [Migration("20210808034849_RestoreMigrations")]
+    partial class RestoreMigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -63,6 +63,9 @@ namespace API.Data.Migrations
 
                     b.Property<string>("Country")
                         .HasColumnType("TEXT");
+
+                    b.Property<int?>("CourseId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("TEXT");
@@ -127,6 +130,8 @@ namespace API.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CourseId");
+
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
 
@@ -135,6 +140,30 @@ namespace API.Data.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("API.Entities.AppUserCourse", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AppUserCourse");
                 });
 
             modelBuilder.Entity("API.Entities.AppUserRole", b =>
@@ -150,6 +179,20 @@ namespace API.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+                });
+
+            modelBuilder.Entity("API.Entities.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Category");
                 });
 
             modelBuilder.Entity("API.Entities.Connection", b =>
@@ -168,6 +211,80 @@ namespace API.Data.Migrations
                     b.HasIndex("GroupName");
 
                     b.ToTable("Connections");
+                });
+
+            modelBuilder.Entity("API.Entities.Course", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("InstructorId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("InstructorUsername")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InstructorId");
+
+                    b.ToTable("Course");
+                });
+
+            modelBuilder.Entity("API.Entities.CourseCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("CourseCategory");
+                });
+
+            modelBuilder.Entity("API.Entities.CoursePhoto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsMain")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("PublicId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("CoursePhotos");
                 });
 
             modelBuilder.Entity("API.Entities.Group", b =>
@@ -346,6 +463,32 @@ namespace API.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("API.Entities.AppUser", b =>
+                {
+                    b.HasOne("API.Entities.Course", null)
+                        .WithMany("Students")
+                        .HasForeignKey("CourseId");
+                });
+
+            modelBuilder.Entity("API.Entities.AppUserCourse", b =>
+                {
+                    b.HasOne("API.Entities.Course", "Course")
+                        .WithMany("UserCourses")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Entities.AppUser", "User")
+                        .WithMany("UserCourses")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("API.Entities.AppUserRole", b =>
                 {
                     b.HasOne("API.Entities.AppRole", "Role")
@@ -370,6 +513,47 @@ namespace API.Data.Migrations
                     b.HasOne("API.Entities.Group", null)
                         .WithMany("Connections")
                         .HasForeignKey("GroupName");
+                });
+
+            modelBuilder.Entity("API.Entities.Course", b =>
+                {
+                    b.HasOne("API.Entities.AppUser", "Instructor")
+                        .WithMany()
+                        .HasForeignKey("InstructorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Instructor");
+                });
+
+            modelBuilder.Entity("API.Entities.CourseCategory", b =>
+                {
+                    b.HasOne("API.Entities.Category", "Category")
+                        .WithMany("CourseCategories")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Entities.Course", "Course")
+                        .WithMany("CourseCategories")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Course");
+                });
+
+            modelBuilder.Entity("API.Entities.CoursePhoto", b =>
+                {
+                    b.HasOne("API.Entities.Course", "Course")
+                        .WithMany("CoursePhotos")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
                 });
 
             modelBuilder.Entity("API.Entities.Message", b =>
@@ -474,7 +658,25 @@ namespace API.Data.Migrations
 
                     b.Navigation("Photos");
 
+                    b.Navigation("UserCourses");
+
                     b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("API.Entities.Category", b =>
+                {
+                    b.Navigation("CourseCategories");
+                });
+
+            modelBuilder.Entity("API.Entities.Course", b =>
+                {
+                    b.Navigation("CourseCategories");
+
+                    b.Navigation("CoursePhotos");
+
+                    b.Navigation("Students");
+
+                    b.Navigation("UserCourses");
                 });
 
             modelBuilder.Entity("API.Entities.Group", b =>

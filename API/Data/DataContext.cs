@@ -38,8 +38,32 @@ namespace API.Data
                 .WithOne(u => u.Role)
                 .HasForeignKey(ur => ur.RoleId)
                 .IsRequired();
-                
+            //relation UserCourse
+            builder.Entity<AppUser>()
+                .HasMany(uc => uc.UserCourses)
+                .WithOne(u => u.User)
+                .HasForeignKey(uc => uc.UserId)
+                .IsRequired();
+
+            builder.Entity<Course>()
+                .HasMany(uc => uc.UserCourses)
+                .WithOne(u => u.Course)
+                .HasForeignKey(uc => uc.CourseId)
+                .IsRequired();
+                //relation CourseCategory
+                builder.Entity<Course>()
+                .HasMany(cc => cc.CourseCategories)
+                .WithOne(c => c.Course)
+                .HasForeignKey(cc => cc.CourseId)
+                .IsRequired();
+
+            builder.Entity<Category>()
+                .HasMany(cc => cc.CourseCategories)
+                .WithOne(c => c.Category)
+                .HasForeignKey(cc => cc.CategoryId)
+                .IsRequired();
             
+
             //custom merged Id of UserLike entidad
             builder.Entity<UserLike>()
                 .HasKey(k => new{k.SourceUserId, k.LikedUserId});
