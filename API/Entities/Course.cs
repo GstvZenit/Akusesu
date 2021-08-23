@@ -12,7 +12,9 @@ namespace API.Entities
         public int InstructorId { get; set; }
         public string InstructorUsername { get; set; }
         public AppUser Instructor { get; set; }
-        public ICollection<CourseCategory> CourseCategories { get; set; }
+        public string Category { get; set; }
+        public string Institution { get; set; }
+        public string Duration { get; set; }
         public ICollection<CoursePhoto> CoursePhotos { get; set; }
         public ICollection<AppUserCourse> UserCourses { get; set; }
 

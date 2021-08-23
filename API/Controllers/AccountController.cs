@@ -7,6 +7,7 @@ using API.DTOs;
 using API.Entities;
 using API.Interfaces;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -28,7 +29,7 @@ namespace API.Controllers
             _mapper = mapper;
             //_context = context;
         }
-
+        
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
@@ -57,6 +58,7 @@ namespace API.Controllers
             };
 
         }
+        
         [HttpPost("login")]
         public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
@@ -70,7 +72,10 @@ namespace API.Controllers
             var result = await _signInManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
 
             if (!result.Succeeded) return Unauthorized();
-            
+
+
+            HttpContext.User = await _signInManager.CreateUserPrincipalAsync(user);
+            var userId = int.Parse(_userManager.GetUserId(HttpContext.User));
             return new UserDto
             {
                 Username = user.UserName,

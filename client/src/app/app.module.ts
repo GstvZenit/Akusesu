@@ -37,6 +37,12 @@ import { RolesModalComponent } from './modals/roles-modal/roles-modal.component'
 import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LeftColumnComponent } from './left-column/left-column.component';
+import { CourseCardComponent } from './courses/course-card/course-card.component';
+import { CourseDetailComponent } from './courses/course-detail/course-detail.component';
+import { CourseEditComponent } from './courses/course-edit/course-edit.component';
+import { CourseListComponent } from './courses/course-list/course-list.component';
+import { CourseStudentsComponent } from './courses/course-students/course-students.component';
+import { CourseQuizesComponent } from './courses/course-quizes/course-quizes.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +70,13 @@ import { LeftColumnComponent } from './left-column/left-column.component';
     RolesModalComponent,
     ConfirmDialogComponent,
     DashboardComponent,
-    LeftColumnComponent
+    LeftColumnComponent,
+    CourseCardComponent,
+    CourseDetailComponent,
+    CourseEditComponent,
+    CourseListComponent,
+    CourseStudentsComponent,
+    CourseQuizesComponent
   ],
   imports: [
     BrowserModule,

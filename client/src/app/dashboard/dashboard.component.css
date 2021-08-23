@@ -98,3 +98,19 @@ body {
     border-color: transparent;
     box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
   }
+
+
+  .dropdown-toggle, .dropwdown-item{
+    cursor: pointer;
+
+  }
+  
+  img{
+    max-height: 50px;
+    border: 2px solid #fff;
+    display: inline;
+
+  }
+  .rounded-circle{
+    max-height: 50px;
+}

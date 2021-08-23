@@ -114,7 +114,7 @@ namespace API.Controllers
             var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
             var photo = user.Photos.FirstOrDefault(x => x.Id == photoId);
             if (photo == null) return NotFound();
-            if (photo.IsMain) return BadRequest("No puede eliminar tu foto principal");
+            if (photo.IsMain) return BadRequest("No puedes eliminar tu foto principal");
             if (photo.PublicId != null)
             {
                 var result = await _photoService.DeletePhotoAsync(photo.PublicId);

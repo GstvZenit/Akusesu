@@ -72,6 +72,18 @@ namespace API.Data
                 .Select(x => x.Gender).FirstOrDefaultAsync();
         }
 
+        public async Task<int> GetUserId(string username)
+        {
+            return await _context.Users.Where(x => x.UserName == username)
+                .Select(x => x.Id).FirstOrDefaultAsync();
+        }
+
+        public async Task<string> GetUserName(string username)
+        {
+            return await _context.Users.Where(x => x.UserName == username)
+                .Select(x => x.UserName).FirstOrDefaultAsync();
+        }
+
         public async Task<IEnumerable<AppUser>> GetUsersAsync()
         {
             return await _context.Users

@@ -20,6 +20,7 @@ namespace API.Data
         //public DbSet<AppUser> Users { get; set; }
         public DbSet<UserLike> Likes { get; set; }
         public DbSet<Message> Messages { get; set; }
+        public DbSet<Course> Course {get; set;} //debe estar como esta en la base de datos
         public DbSet<Group> Groups { get; set; }
         public DbSet<Connection> Connections {get; set;}
 
@@ -50,18 +51,7 @@ namespace API.Data
                 .WithOne(u => u.Course)
                 .HasForeignKey(uc => uc.CourseId)
                 .IsRequired();
-                //relation CourseCategory
-                builder.Entity<Course>()
-                .HasMany(cc => cc.CourseCategories)
-                .WithOne(c => c.Course)
-                .HasForeignKey(cc => cc.CourseId)
-                .IsRequired();
-
-            builder.Entity<Category>()
-                .HasMany(cc => cc.CourseCategories)
-                .WithOne(c => c.Category)
-                .HasForeignKey(cc => cc.CategoryId)
-                .IsRequired();
+                
             
 
             //custom merged Id of UserLike entidad

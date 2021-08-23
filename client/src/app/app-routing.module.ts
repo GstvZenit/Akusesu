@@ -14,6 +14,10 @@ import { PreventUnsavedChangesGuard } from './_guards/prevent-unsaved-changes.gu
 import { MemberDetailedResolver } from './_resolvers/member-detailed.resolver';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { AdminGuard } from './_guards/admin.guard';
+import { CourseListComponent } from './courses/course-list/course-list.component';
+import { CourseDetailComponent } from './courses/course-detail/course-detail.component';
+import { CourseDetailedResolver } from './_resolvers/course-detailed.resolver';
+import { CourseEditComponent } from './courses/course-edit/course-edit.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -24,6 +28,9 @@ const routes: Routes = [
     children: [
       {path: 'members', component: MemberListComponent},
       {path: 'members/:username', component: MemberDetailComponent, resolve: {member: MemberDetailedResolver}},
+      {path: 'courses', component: CourseListComponent},
+      {path: 'courses/:name', component: CourseDetailComponent, resolve: {course: CourseDetailedResolver}},
+      {path: 'course/edit', component: CourseEditComponent, canDeactivate: [PreventUnsavedChangesGuard]},
       {path: 'member/edit', component: MemberEditComponent, canDeactivate: [PreventUnsavedChangesGuard]},
       {path: 'lists', component: ListsComponent},
       {path: 'messages', component: MessagesComponent},
