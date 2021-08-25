@@ -18,6 +18,8 @@ import { CourseListComponent } from './courses/course-list/course-list.component
 import { CourseDetailComponent } from './courses/course-detail/course-detail.component';
 import { CourseDetailedResolver } from './_resolvers/course-detailed.resolver';
 import { CourseEditComponent } from './courses/course-edit/course-edit.component';
+import { CourseAddComponent } from './course-add/course-add.component'; 
+
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -35,6 +37,7 @@ const routes: Routes = [
       {path: 'lists', component: ListsComponent},
       {path: 'messages', component: MessagesComponent},
       {path: 'admin', component: AdminPanelComponent, canActivate: [AdminGuard]},
+      {path: 'addCourse', component: CourseAddComponent},
     ]
   },
   {path: "errors", component: TestErrorsComponent},

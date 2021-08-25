@@ -43,6 +43,9 @@ import { CourseEditComponent } from './courses/course-edit/course-edit.component
 import { CourseListComponent } from './courses/course-list/course-list.component';
 import { CourseStudentsComponent } from './courses/course-students/course-students.component';
 import { CourseQuizesComponent } from './courses/course-quizes/course-quizes.component';
+import { CourseAddComponent } from './course-add/course-add.component';
+import { InstructorPanelComponent } from './instructor/instructor-panel/instructor-panel.component';
+import { CourseManagementComponent } from './instructor/course-management/course-management.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +79,10 @@ import { CourseQuizesComponent } from './courses/course-quizes/course-quizes.com
     CourseEditComponent,
     CourseListComponent,
     CourseStudentsComponent,
-    CourseQuizesComponent
+    CourseQuizesComponent,
+    CourseAddComponent,
+    InstructorPanelComponent,
+    CourseManagementComponent,
   ],
   imports: [
     BrowserModule,

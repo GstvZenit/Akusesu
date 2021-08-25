@@ -129,6 +129,19 @@ namespace API.Controllers
             return Ok(courses);
         }
 
+         [HttpGet("courses")]
+        public async Task<ActionResult<IEnumerable<CourseDto>>> GetCoursesNoFilter()
+        {
+            //rollback
+
+            //
+            var courses = await _unitOfWork.CourseRepository.GetCoursesAsyncc();
+
+            
+
+            return Ok(courses);
+        }
+
         [HttpGet("{name}", Name = "GetCourse")]
         public async Task<ActionResult<CourseDto>> GetCourse(string name)
         {

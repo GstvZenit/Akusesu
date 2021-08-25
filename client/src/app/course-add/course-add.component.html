@@ -1,0 +1,71 @@
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <form [formGroup]='addCourseForm' (ngSubmit)="addCourseForm.valid && addCourse()" autocomplete="off">
+            <h2 class="text-center text-primary">Agregar Curso</h2>
+            <hr>
+    
+    
+            <app-text-input [formControl]='addCourseForm.controls["name"]' [label]='"Nombre del curso"'></app-text-input>
+            <app-text-input [formControl]='addCourseForm.controls["description"]' [label]='"Descripcion"'></app-text-input>
+
+            <div class="form-group">
+                <label class="control-label" style="margin-right: 10px">Categoria: </label>
+                <select formControlName="category"style="width: 130px"  class="form-control ml-1">
+                    <option *ngFor="let category of categoryList" [value]="category.value">
+                        {{category.display}}
+                    </option>
+                </select>
+            </div>
+
+            <app-text-input [formControl]='addCourseForm.controls["institution"]' [label]='"Institucion"'></app-text-input>
+            <app-text-input [formControl]='addCourseForm.controls["duration"]' [label]='"Duracion semanas"'></app-text-input>
+            <!--
+            <div class="form-group">
+                <input 
+                    [class.is-invalid]='registerForm.get("username").errors && registerForm.get("username").touched'
+                    type="text" 
+                    class="form-control" 
+                    formControlName='username'
+                placeholder="Nombre de usuario">
+                <div class="invalid-feedback">Por favor ingrese su nombre de usuario</div>
+            </div>
+    
+    
+            <div class="form-group">
+                <input 
+                    [class.is-invalid]='registerForm.get("password").errors && registerForm.get("password").touched'
+                    type="password" 
+                    class="form-control" 
+                    formControlName='password'
+                    placeholder="Contraseña">
+                    <div *ngIf="registerForm.get('password').hasError('required')" class="invalid-feedback">Por favor ingrese su contraseña</div>
+                    <div *ngIf="registerForm.get('password').hasError('minlength')" class="invalid-feedback">La contraseña debe tener al menos 4 caracteres</div>
+                    <div *ngIf="registerForm.get('password').hasError('maxlength')" class="invalid-feedback">La contraseña deber ser de maximo 8 caracteres</div>
+            </div>
+    
+            <div class="form-group">
+                <input 
+                    [class.is-invalid]='registerForm.get("confirmPassword").errors && registerForm.get("confirmPassword").touched'
+                    type="password" 
+                    class="form-control" 
+                    formControlName='confirmPassword'
+                    placeholder="Confirmar contraseña">
+                    <div *ngIf="registerForm.get('confirmPassword').hasError('required')" class="invalid-feedback">Por favor confirme su contraseña</div>
+                    <div *ngIf="registerForm.get('confirmPassword').hasError('isMatching')" class="invalid-feedback">La confirmacion debe coincidir con la contraseña</div>
+            </div>
+                -->
+                <div class="row" *ngIf="validationErrors.length > 0">
+                    <ul class="text-danger">
+                        <li *ngFor="let error of validationErrors" >
+                            {{error}}
+                        </li>
+                    </ul>
+                </div>
+    
+    
+            <div class="form-group text-center">
+                <button [disabled]='!addCourseForm.valid' class="btn btn-success mr-2" type="submit">Agregar Curso</button>
+                <button class="btn btn-default mr-2" (click)="cancel()" type="button">Cancelar</button>
+            </div>
+    
+    </form>
+    </main>
