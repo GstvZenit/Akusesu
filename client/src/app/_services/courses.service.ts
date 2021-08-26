@@ -97,6 +97,11 @@ export class CoursesService {
 
     return this.http.get<Course>(this.baseUrl + 'course/' + name);
   }
+  
+  getCoursesNoFilter() {
+    return this.http.get<Partial<Course[]>>(this.baseUrl + 'course/courses');
+  }
+
 
   addCourse(course: Course){
     return this.http.post(this.baseUrl + 'course/add-course', course);
