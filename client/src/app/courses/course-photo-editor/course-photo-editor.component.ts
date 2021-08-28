@@ -12,11 +12,11 @@ import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-photo-editor',
-  templateUrl: './photo-editor.component.html',
-  styleUrls: ['./photo-editor.component.css']
+  selector: 'app-course-photo-editor',
+  templateUrl: './course-photo-editor.component.html',
+  styleUrls: ['./course-photo-editor.component.css']
 })
-export class PhotoEditorComponent implements OnInit {
+export class CoursePhotoEditorComponent implements OnInit {
   //@Input() member: Member;
   @Input() course: Course;
   uploader: FileUploader;
@@ -25,7 +25,8 @@ export class PhotoEditorComponent implements OnInit {
   user: User;
 
   constructor(private coursesService: CoursesService, private router: Router) { 
-    this.router.getCurrentNavigation().extras.state
+    this.router.getCurrentNavigation().extras.state;
+    this.router.getCurrentNavigation().extras.state as Course;
   }
 
   ngOnInit(): void {

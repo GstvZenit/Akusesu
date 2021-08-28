@@ -148,15 +148,16 @@ namespace API.Controllers
             return await _unitOfWork.CourseRepository.GetCourseAsync(name);
         }
 
-        [HttpPut("{Id}")]
-        public async Task<ActionResult> UpdateCourse(int Id, CourseUpdateDto courseUpdateDto)
+        [HttpPatch("update-course/{Id}")]
+        public async Task<ActionResult> UpdateCourse(int id, CourseUpdateDto courseUpdateDto)
         {
             //obteniendo username a traves del token
             //var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
             //investigar como obtener el curso que se deasea actualizar
             //usando automapper memberUpdateDto
-            var course = _mapper.Map<Course>(courseUpdateDto);
-            course.Id = Id;
+            var course = await _unitOfWork.CourseRepository.GetCourseByIdAsync(id);
+            _mapper.Map<Course>(courseUpdateDto);
+            //course.Id = Id;
             //
             _mapper.Map(courseUpdateDto, course);
 
@@ -166,6 +167,26 @@ namespace API.Controllers
 
             return BadRequest("Failed to update user");
         }
+
+        [HttpDelete("delete-course/{Id}")]
+        public async Task<ActionResult> DeleteCourse(int id)
+        {
+            
+            var course = await _unitOfWork.CourseRepository.GetCourseByIdAsync(id);
+
+            _unitOfWork.CourseRepository.DeleteCourse(course);
+
+            if (await _unitOfWork.Complete()) return Ok();
+
+            return BadRequest("Error al eliminar el curso");
+
+        }
+
+
+
+
+
+
 
         [HttpPost("{Id}", Name = "add-photo")]
         public async Task<ActionResult<PhotoDto>> AddPhoto(IFormFile file, int Id, CourseUpdateDto courseUpdateDto)

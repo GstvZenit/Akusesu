@@ -10,8 +10,8 @@
             <tr *ngFor="let course of courses">
                     <td>{{course.name}}</td>
                     <td>{{course.description}}</td>
-                    <td><button class="btn btn-outline-info">Editar Curso</button></td>
-                    <td><button class="btn btn-outline-danger">Eliminar</button></td>
+                    <td><button routerLink='/course/edit' [state]="course" class="btn btn-outline-info">Editar Curso</button></td>
+                    <td><button (click)="$event.stopPropagation()" (click)="deleteCourse(course.id)" class="btn btn-outline-danger">Eliminar</button></td>
             </tr>
     
         </table>

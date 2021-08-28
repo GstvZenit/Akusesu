@@ -86,6 +86,8 @@ namespace API.Data
         public void Update(Course course)
         {
             _context.Entry(course).State = EntityState.Modified;
+            //_context.Course.Update(course);
         }
+
     }
 }

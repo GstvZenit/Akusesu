@@ -46,6 +46,7 @@ import { CourseQuizesComponent } from './courses/course-quizes/course-quizes.com
 import { CourseAddComponent } from './course-add/course-add.component';
 import { InstructorPanelComponent } from './instructor/instructor-panel/instructor-panel.component';
 import { CourseManagementComponent } from './instructor/course-management/course-management.component';
+import { CoursePhotoEditorComponent } from './courses/course-photo-editor/course-photo-editor.component';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { CourseManagementComponent } from './instructor/course-management/course
     CourseAddComponent,
     InstructorPanelComponent,
     CourseManagementComponent,
+    CoursePhotoEditorComponent,
   ],
   imports: [
     BrowserModule,

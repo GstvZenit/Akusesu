@@ -108,13 +108,12 @@ export class CoursesService {
   }
 
 
-  updateCourse(course: Course){
-    return this.http.put(this.baseUrl + 'course', course).pipe(
-      map(() => {
-        const index = this.courses.indexOf(course);
-        this.course[index] = course;
-      })
-    );
+  updateCourse(id: number, course: Course){
+    return this.http.patch(this.baseUrl + 'course/update-course/' + id, course);
+  }
+
+  deleteCourse(id: number) {
+    return this.http.delete(this.baseUrl + 'course/delete-course/' + id);
   }
 
 

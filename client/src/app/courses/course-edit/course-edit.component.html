@@ -1,1 +1,82 @@
-<p>course-edit works!</p>
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <div class="row" *ngIf="course">
+        <div class="col-4">
+            <h1>Tu curso</h1>
+        </div>
+        <div class="col-8">
+            <div class="alert alert-info" *ngIf="editForm.dirty">
+                <strong>Nota: </strong>Realizaste cambios. Los cambios no guardados se perderan
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <img src="{{course.coursePhotourl || './assets/course.jpg'}}" alt="{{course.name}}" class="card-img-top img-thumbnail">
+                <div class="card-body">
+                    <div>
+                        <strong>Nombre:</strong>
+                        <p><i class="fa fa-file-alt mr-2"></i>{{course.name}}</p>
+                    </div>
+
+                    <div>
+                        <strong>Descripcion:</strong>
+                        <p><i class="fa fa-file-alt mr-2"></i>{{course.description}}</p>
+                    </div>
+                    <div>
+                        <strong>Categoria:</strong>
+                        <p>{{course.category}}</p>
+                    </div>  
+                    <div>
+                        <strong>Institucion:</strong>
+                        <p><i class="fa fa-school mr-2"></i>{{course.institution}}</p>
+                    </div> 
+                    <div>
+                        <strong>Duracion:</strong>
+                        <p><i class="fa fa-clock mr-2"></i>{{course.duration}}</p>
+                    </div>  
+                    <div>
+                        <strong>Fecha de creacion:</strong>
+                        <p><i class="fa fa-calendar-alt mr-2"></i>{{course.dateCreated | date: 'dd MMM yyyy'}}</p>
+                    </div>         
+                </div>
+                 <div class="card-footer">
+    
+                    <button [disabled]="!editForm.dirty" form="editForm" class="btn btn-success btn-block">Guardar cambios</button>
+                     
+                 </div>
+     
+            </div>
+        </div> 
+     
+        <div class="col-8">
+            <tabset class="member-tabset">
+                 <tab heading='Info de {{course.name}}'>
+                     <form #editForm="ngForm" id="editForm" (ngSubmit)="updateCourse()">
+                        <h4>Nombre del curso</h4>
+                        <textarea class="form-control" [(ngModel)]="course.name" name="name" rows="6"></textarea>
+                        <h4>Descripcion</h4>
+                        <textarea class="form-control" [(ngModel)]="course.description" name="description" rows="6"></textarea>
+                        <h4 class="mt-2">Categoria</h4>
+                        <textarea class="form-control" [(ngModel)]="course.category" name="category" rows="6"></textarea>
+                        <h4 class="mt-2">Institucion</h4>
+                        <textarea class="form-control" [(ngModel)]="course.institution" name="institution" rows="6"></textarea>
+                        <h4 class="mt-2">Duracion</h4>
+                        <textarea class="form-control" [(ngModel)]="course.duration" name="duration" rows="6"></textarea>
+                        
+                     </form>
+                     
+                 </tab>
+                 <tab heading='Editar Fotos'>
+
+
+
+
+                     
+                 </tab>
+                 
+     
+            </tabset>
+        </div>
+     
+     </div>
+     
+    </main>
