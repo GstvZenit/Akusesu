@@ -6,7 +6,7 @@ namespace API.Entities
 {
     public class AppUserCourse : IdentityUserRole<int>
     {
-        public int Id { get; set; }
+        public int sourceUserId { get; set; }
         public AppUser User { get; set; }
         public Course Course { get; set; }
         public int CourseId { get; set; }

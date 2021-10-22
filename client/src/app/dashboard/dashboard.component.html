@@ -66,35 +66,27 @@
           <li class="nav-item">
             <a class="nav-link" routerLink='/courses' routerLinkActive='active'>
               <span data-feather="home"></span>
-              Cursos
+              Cursos Disponibles
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink='/lists' routerLinkActive='active'>
-              <span data-feather="file"></span>
-              Lists
-            </a>
-          </li>
+          
           <li class="nav-item">
             <a class="nav-link" routerLink='/messages' routerLinkActive='active'>
               <span data-feather="shopping-cart"></span>
               Mensajes
             </a>
           </li>
+
           <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="users"></span>
+            <a class="nav-link" routerLink='/enroll' routerLinkActive='active'>
+              <span data-feather="shopping-cart"></span>
               Mis cursos
             </a>
           </li>
+          
+          
           <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="bar-chart-2"></span>
-            Quizes
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link"routerLink='/member/edit' routerLinkActive='active'>
               <span data-feather="layers"></span>
               Mi cuenta
             </a>
@@ -105,40 +97,29 @@
 
           
 
-          <span>Instructor/Admin</span>
+          <span *appHasRole='["Admin","Moderator"]'>Instructor/Admin</span>
           <a class="link-secondary" href="#" aria-label="Add a new report">
             <span data-feather="plus-circle"></span>
           </a>
         </h6>
         <ul class="nav flex-column mb-2">
-          <li class="nav-item">
-            <a class="nav-link" routerLink='/addCourse' routerLinkActive='active'>
+          <li *appHasRole='["Admin","Moderator"]' class="nav-item">
+            <a *appHasRole='["Admin","Moderator"]' class="nav-link" routerLink='/addCourse' routerLinkActive='active'>
               <span data-feather="file-text"></span>
               Crear Curso
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
+          
+          <li *appHasRole='["Admin"]' class="nav-item">
+            <a  *appHasRole='["Admin"]' class="nav-link" routerLink='/admin' routerLinkActive='active'>
               <span data-feather="file-text"></span>
-              Gestion de cursos
+              Admin Panel
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
+          <li *appHasRole='["Admin","Moderator"]' class="nav-item">
+            <a *appHasRole='["Admin","Moderator"]' class="nav-link" routerLink='/instructor' routerLinkActive='active'>
               <span data-feather="file-text"></span>
-              Gestion de usuarios?
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink='/admin' routerLinkActive='active'>
-              <span data-feather="file-text"></span>
-              Admin
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink='/instructor' routerLinkActive='active'>
-              <span data-feather="file-text"></span>
-              Instructor
+              Instructor Panel
             </a>
           </li>
         </ul>

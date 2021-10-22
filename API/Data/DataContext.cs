@@ -22,6 +22,7 @@ namespace API.Data
         public DbSet<Message> Messages { get; set; }
         public DbSet<Course> Course {get; set;} //debe estar como esta en la base de datos
         public DbSet<Group> Groups { get; set; }
+        public DbSet<AppUserCourse> Enroll { get; set; }
         public DbSet<Connection> Connections {get; set;}
 
         protected override void OnModelCreating(ModelBuilder builder){
@@ -57,7 +58,22 @@ namespace API.Data
             //custom merged Id of UserLike entidad
             builder.Entity<UserLike>()
                 .HasKey(k => new{k.SourceUserId, k.LikedUserId});
+
+                builder.Entity<AppUserCourse>()
+                .HasKey(k => new{k.sourceUserId, k.CourseId});
             //relaciones enter tabls
+
+            builder.Entity<AppUserCourse>()
+            .HasOne(s => s.User)
+            .WithMany(l => l.UserCourses)
+            .HasForeignKey(s => s.sourceUserId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<AppUserCourse>()
+                .HasOne(z => z.Course)
+                .WithMany(l => l.UserCourses)
+                .HasForeignKey(s => s.CourseId)
+                .OnDelete(DeleteBehavior.Cascade);
             builder.Entity<UserLike>()
             .HasOne(s => s.SourceUser)
             .WithMany(l => l.LikedUsers)

@@ -1,0 +1,30 @@
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <div class="text-center mt-3">
+        <h2>Cursos a los que te has inscrito</h2>
+    </div>
+    
+    <div class="container mt-3">
+        
+    
+        <div class="row mt-3">
+            <div class="col-2" *ngFor="let course of courses">
+                <app-course-card [course]="course"></app-course-card>
+            </div>
+        </div>
+    </div>
+    
+    <div class="d-flex justify-content-center" *ngIf="pagination">
+        <pagination 
+        [boundaryLinks]="true" 
+        [totalItems]="pagination.totalItems"
+        [itemsPerPage]="pagination.itemsPerPage"
+        [(ngModel)]="pagination.currentPage"
+        (pageChanged)="pageChanged($event)"
+        previousText="&lsaquo;" 
+        nextText="&rsaquo;" 
+        firstText="&laquo;" 
+        lastText="&raquo;">
+     
+        </pagination>
+    </div>
+    </main>

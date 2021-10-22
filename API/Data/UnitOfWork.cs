@@ -20,6 +20,7 @@ namespace API.Data
 
         public ILikesRepository LikesRepository => new LikesRepository(_context);
         public ICourseRepository CourseRepository => new CourseRepository(_context, _mapper);
+        public IEnrollRepository EnrollRepository => new EnrollRepository(_context);
 
         public async Task<bool> Complete()
         {

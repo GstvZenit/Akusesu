@@ -85,5 +85,14 @@ export class CourseAddComponent implements OnInit {
   cancel(){
     this.router.navigateByUrl('/courses');
   }
+
+  playSuccess(){
+    //console.log("Playing Sound");
+    let audio = new Audio();
+    //Can externalize the variables
+    audio.src = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/success.mp3";
+    audio.load();
+    return audio.play() ;
+  }
   
 }

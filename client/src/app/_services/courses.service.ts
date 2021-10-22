@@ -106,7 +106,14 @@ export class CoursesService {
   addCourse(course: Course){
     return this.http.post(this.baseUrl + 'course/add-course', course);
   }
+  addEnroll(name: string){
+    return this.http.post(this.baseUrl + 'enroll/' + name, {})
+  }
 
+  getEnrolls(pageNumber, pageSize) {
+    let params = getPaginationHeaders(pageNumber, pageSize);
+    return getPaginatedResult<Partial<Course[]>>(this.baseUrl + 'enroll', params, this.http);
+  }
 
   updateCourse(id: number, course: Course){
     return this.http.patch(this.baseUrl + 'course/update-course/' + id, course);

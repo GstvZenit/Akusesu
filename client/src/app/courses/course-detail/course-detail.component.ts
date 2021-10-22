@@ -7,19 +7,22 @@ import { Course } from 'src/app/_models/course';
 import { User } from 'src/app/_models/user';
 import { AccountService } from 'src/app/_services/account.service';
 import { CoursesService } from 'src/app/_services/courses.service';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-course-detail',
   templateUrl: './course-detail.component.html',
   styleUrls: ['./course-detail.component.css']
 })
 export class CourseDetailComponent implements OnInit {
+  
+
   @ViewChild('courseTabs', {static: true}) memberTabs: TabsetComponent; //rerecieando la variable template service #memberTabs
   course: Course;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
   activeTab: TabDirective;
   user: User;
+  toastr: any;
 
   constructor(private route: ActivatedRoute, private accountService: AccountService, private coursesService: CoursesService,
     private router: Router) { 
@@ -75,6 +78,12 @@ export class CourseDetailComponent implements OnInit {
 
   selectTab(tabId: number){
     this.memberTabs.tabs[tabId].active = true;
+  }
+
+  addCourse(course: Course){
+    this.coursesService.addEnroll(course.name).subscribe(() => {
+      this.toastr.success('Te has inscrito al curso');
+    })
   }
 
 }

@@ -1,4 +1,4 @@
-<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-20">
 <form [formGroup]='registerForm' (ngSubmit)="registerForm.valid && register()" autocomplete="off">
         <h2 class="text-center text-primary">Formulario de registro</h2>
         <hr>
@@ -12,13 +12,19 @@
                 <input type="radio" value='female' formControlName='gender' class="ml-3"> Mujer
             </label>
         </div>
-
+        <strong>Nombre de usuario:</strong>
         <app-text-input [formControl]='registerForm.controls["username"]' [label]='"Usuario"'></app-text-input>
+        <strong>Nickname o apodo:</strong>
         <app-text-input [formControl]='registerForm.controls["knownAs"]' [label]='"Apodo"'></app-text-input>
+        <strong>Fecha de nacimiento:</strong>
         <app-date-input [formControl]='registerForm.controls["dateOfBirth"]' [label]='"Fecha de nacimiento"' [maxDate]='maxDate'></app-date-input>
+        <strong>Ciudad:</strong>
         <app-text-input [formControl]='registerForm.controls["city"]' [label]='"Ciudad"'></app-text-input>
+        <strong>Pais:</strong>
         <app-text-input [formControl]='registerForm.controls["country"]' [label]='"Pais"'></app-text-input>
+        <strong>Contraseña:</strong>
         <app-text-input [formControl]='registerForm.controls["password"]' [label]='"Contraseña"' [type]='"password"'></app-text-input>
+        <strong>Confirmación de la contraseña:</strong>
         <app-text-input [formControl]='registerForm.controls["confirmPassword"]' [label]='"Confirmacion de contraseña"' [type]='"password"'></app-text-input>
         <!--
         <div class="form-group">

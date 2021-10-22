@@ -5,8 +5,8 @@
         class="form-control" 
         [formControl]="ngControl.control"
         placeholder={{label}}>
-        <div *ngIf="ngControl.control.errors?.required" class="invalid-feedback">Por favor ingrese su {{label}}</div>
-        <div *ngIf="ngControl.control.errors?.minlength" class="invalid-feedback">{{label}} debe ser al menos {{ngControl.control.errors.minlength['requiredLength']}}</div>
-        <div *ngIf="ngControl.control.errors?.maxLength" class="invalid-feedback">{{label}} debe ser a lo mucho {{ngControl.control.errors.maxLength['requiredLength']}}</div>
-        <div *ngIf="ngControl.control.errors?.isMatching" class="invalid-feedback">Las contraseñas no coinciden</div>
+        <div *ngIf="ngControl.control.errors?.required" class="invalid-feedback" > Por favor ingrese su  {{label}} {{playError()}}</div> 
+        <div *ngIf="ngControl.control.errors?.minlength" class="invalid-feedback">{{label}}  debe ser al menos {{ngControl.control.errors.minlength['requiredLength']}} </div>
+        <div *ngIf="ngControl.control.errors?.maxLength" class="invalid-feedback">{{label}}  debe ser a lo mucho {{ngControl.control.errors.maxLength['requiredLength']}} </div>
+        <div *ngIf="ngControl.control.errors?.isMatching" class="invalid-feedback">Las contraseñas no coinciden </div>
 </div>

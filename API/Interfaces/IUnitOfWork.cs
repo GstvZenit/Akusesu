@@ -8,6 +8,7 @@ namespace API.Interfaces
         IMessageRepository MessageRepository{get;}
         ILikesRepository LikesRepository{get;}
         ICourseRepository CourseRepository{get;}
+        IEnrollRepository EnrollRepository{get;}
         Task<bool> Complete();
         bool HasChanges();
     }

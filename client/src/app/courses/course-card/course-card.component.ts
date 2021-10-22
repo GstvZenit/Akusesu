@@ -23,4 +23,19 @@ export class CourseCardComponent implements OnInit {
       this.toastr.success('Le has dado like a ' + member.knownAs);
     })
   }*/
+
+  addCourse(course: Course){
+    this.coursesService.addEnroll(course.name).subscribe(() => {
+      this.toastr.success('Te has inscrito al curso' + course.name);
+    })
+  }
+
+  playSuccess(){
+    //console.log("Playing Sound");
+    let audio = new Audio();
+    //Can externalize the variables
+    audio.src = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/success.mp3";
+    audio.load();
+    return audio.play() ;
+  }
 }

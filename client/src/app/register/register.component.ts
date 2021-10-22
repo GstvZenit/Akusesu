@@ -16,6 +16,8 @@ export class RegisterComponent implements OnInit {
   maxDate: Date;
   validationErrors: string[] = [];
 
+  
+
   constructor(private accountService: AccountService, private toaster: ToastrService, 
     private fb: FormBuilder, private router: Router) { }
 
@@ -23,6 +25,7 @@ export class RegisterComponent implements OnInit {
     this.initializeForm();
     this.maxDate =new Date();
     this.maxDate.setFullYear(this.maxDate.getFullYear() -3);
+    
 
   }
 
@@ -84,5 +87,7 @@ export class RegisterComponent implements OnInit {
   cancel(){
    this.cancelRegister.emit(false);
   }
+
+ 
 
 }
