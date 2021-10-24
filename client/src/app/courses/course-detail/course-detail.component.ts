@@ -8,6 +8,9 @@ import { User } from 'src/app/_models/user';
 import { AccountService } from 'src/app/_services/account.service';
 import { CoursesService } from 'src/app/_services/courses.service';
 import { ToastrService } from 'ngx-toastr';
+import { Member } from 'src/app/_models/member';
+import { Pagination } from 'src/app/_models/pagination';
+import { MembersService } from 'src/app/_services/members.service';
 @Component({
   selector: 'app-course-detail',
   templateUrl: './course-detail.component.html',
@@ -15,17 +18,23 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CourseDetailComponent implements OnInit {
   
-
+  
   @ViewChild('courseTabs', {static: true}) memberTabs: TabsetComponent; //rerecieando la variable template service #memberTabs
   course: Course;
+  courses: Partial<Course[]>;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
   activeTab: TabDirective;
   user: User;
   toastr: any;
+  members: Partial<Member[]>;
+  pageNumber = 1;
+  pageSize = 5;
+  pagination: Pagination;
+
 
   constructor(private route: ActivatedRoute, private accountService: AccountService, private coursesService: CoursesService,
-    private router: Router) { 
+    private router: Router,private memberService: MembersService) { 
       //*****
       this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -33,7 +42,6 @@ export class CourseDetailComponent implements OnInit {
     }
 
   ngOnInit(): void {
-
     this.route.data.subscribe(data => {
       this.course=data.course;
     })
@@ -56,7 +64,14 @@ export class CourseDetailComponent implements OnInit {
     
 
   }
+  
+  loadUsersEnrolled() {
+    this.coursesService.getUsersEnrolled(this.course.id, this.pageNumber, this.pageSize).subscribe(response => {
+      this.members = response.result;
+      this.pagination = response.pagination;
 
+    })
+  }
   
   getImages(): NgxGalleryImage[]{
     const imageUrls = [];
@@ -84,6 +99,11 @@ export class CourseDetailComponent implements OnInit {
     this.coursesService.addEnroll(course.name).subscribe(() => {
       this.toastr.success('Te has inscrito al curso');
     })
+  }
+
+  pageChanged(event: any) {
+    this.pageNumber = event.page;
+    this.loadUsersEnrolled();
   }
 
 }

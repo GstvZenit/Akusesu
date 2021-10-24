@@ -107,6 +107,11 @@ export class MembersService {
     return getPaginatedResult<Partial<Member[]>>(this.baseUrl + 'likes', params, this.http);
   }
 
+
+  getUsersEnrolled(id:number, pageNumber, pageSize) {
+    let params = getPaginationHeaders(pageNumber, pageSize);
+    return getPaginatedResult<Partial<User[]>>(this.baseUrl + 'enroll/course-users/' +id, params, this.http);
+  }
   
   
 }

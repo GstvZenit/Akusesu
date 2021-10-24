@@ -9,6 +9,7 @@ import { map, reduce, take } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { getPaginatedResult, getPaginationHeaders } from './paginationHelper';
 import { of, pipe } from 'rxjs';
+import { Member } from '../_models/member';
 
 @Injectable({
   providedIn: 'root'
@@ -113,6 +114,10 @@ export class CoursesService {
   getEnrolls(pageNumber, pageSize) {
     let params = getPaginationHeaders(pageNumber, pageSize);
     return getPaginatedResult<Partial<Course[]>>(this.baseUrl + 'enroll', params, this.http);
+  }
+  getUsersEnrolled(id:number, pageNumber, pageSize) {
+    let params = getPaginationHeaders(pageNumber, pageSize);
+    return getPaginatedResult<Partial<Member[]>>(this.baseUrl + 'enroll/course-users/' +id, params, this.http);
   }
 
   updateCourse(id: number, course: Course){

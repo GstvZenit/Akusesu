@@ -59,7 +59,7 @@ namespace API.Data
             var enrolls = _context.Enroll.AsQueryable();
             //usuarios que estan inscritos a un curso
             
-                enrolls = enrolls.Where(enroll => enroll.sourceUserId == enrollParams.UserId);
+                enrolls = enrolls.Where(enroll => enroll.CourseId == enrollParams.CourseId);
                 users = enrolls.Select(enroll => enroll.User);
             
 
