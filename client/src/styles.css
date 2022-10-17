@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
 .tab-panel {
     border: 1px solid #ddd;
     padding: 10px;
@@ -44,4 +46,8 @@
     border-top: 1px solid #eee;
     padding: 15px 0;
   }
+
   
+  
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

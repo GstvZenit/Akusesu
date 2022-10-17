@@ -49,6 +49,14 @@ import { CourseManagementComponent } from './instructor/course-management/course
 import { CoursePhotoEditorComponent } from './courses/course-photo-editor/course-photo-editor.component';
 import { EnrolledCoursesListComponent } from './enrolled-courses-list/enrolled-courses-list.component';
 
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -96,7 +104,14 @@ import { EnrolledCoursesListComponent } from './enrolled-courses-list/enrolled-c
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    MatButtonModule,
+    MatCardModule,
+    MatDialogModule,
+    MatIconModule,
+    MatListModule,
+    MatSliderModule,
+    MatToolbarModule,
     
   ],
   providers: [

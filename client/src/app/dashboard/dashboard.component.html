@@ -7,20 +7,24 @@
   
   <div class="navbar-nav fixed-top" >
     <div class="nav-item text-nowrap">
-
-
-  
+        
 
     
-  
-
-
 
     </div>
     
   </div>
 
   <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
+
+    <button mat-icon-button class="blue-color"
+    (click)="toggleTheme()" 
+    matTooltip="Toggle theme"
+    attr.aria-label="Cambiar {{ isDark ? 'claro' : 'oscuro' }} tema"
+    color="primary">
+    <mat-icon>brightness_medium</mat-icon>
+</button>
+
 
     <img class="rounded-circle" src="{{user.photoUrl || './assets/user.png'}}" alt="{{user.username}}">
 
@@ -97,14 +101,14 @@
 
           
 
-          <span *appHasRole='["Admin","Moderator"]'>Instructor/Admin</span>
+          <span *appHasRole='["Admin","Instructor"]'>Instructor/Admin</span>
           <a class="link-secondary" href="#" aria-label="Add a new report">
             <span data-feather="plus-circle"></span>
           </a>
         </h6>
         <ul class="nav flex-column mb-2">
-          <li *appHasRole='["Admin","Moderator"]' class="nav-item">
-            <a *appHasRole='["Admin","Moderator"]' class="nav-link" routerLink='/addCourse' routerLinkActive='active'>
+          <li *appHasRole='["Admin","Instructor"]' class="nav-item">
+            <a *appHasRole='["Admin","Instructor"]' class="nav-link" routerLink='/addCourse' routerLinkActive='active'>
               <span data-feather="file-text"></span>
               Crear Curso
             </a>
@@ -116,8 +120,8 @@
               Admin Panel
             </a>
           </li>
-          <li *appHasRole='["Admin","Moderator"]' class="nav-item">
-            <a *appHasRole='["Admin","Moderator"]' class="nav-link" routerLink='/instructor' routerLinkActive='active'>
+          <li *appHasRole='["Admin","Instructor"]' class="nav-item">
+            <a *appHasRole='["Admin","Instructor"]' class="nav-link" routerLink='/instructor' routerLinkActive='active'>
               <span data-feather="file-text"></span>
               Instructor Panel
             </a>

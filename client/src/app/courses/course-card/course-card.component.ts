@@ -25,6 +25,7 @@ export class CourseCardComponent implements OnInit {
   }*/
 
   addCourse(course: Course){
+    this.playSuccess();
     this.coursesService.addEnroll(course.name).subscribe(() => {
       this.toastr.success('Te has inscrito al curso' + course.name);
     })

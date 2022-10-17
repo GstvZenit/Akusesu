@@ -1,12 +1,15 @@
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 <div class="container mt-5">
         <div *ngIf="!registerMode" style='text-align: center;'>
-            <h1>Aprende algo nuevo cada dia</h1>
-        <p class="lead">Registrate para expandir tus habilidades</p>
+            <h1>Akusesu &#40;Prototipo&#41;</h1>
+            <h2>Un LMS cuya misión y visión es la accesibilidad. Aprende algo nuevo cada día</h2>
+        <p class="lead">Regístrate para expandir tus habilidades</p>
+        
         <div class="text-center">
             <button (click)="registerToggle()" class="btn btn-primary btn-lg mr-2">Registrarse</button>
             <button class="btn btn-info btn-lg ">Acerca de</button>
         </div>
+        <img src="./assets/home-img2.png" alt="ilustracion akusesu LMS" class="center">
         </div>
 
         <div *ngIf="registerMode" class="container">

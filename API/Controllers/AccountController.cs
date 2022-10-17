@@ -45,7 +45,7 @@ namespace API.Controllers
 
             if (!result.Succeeded) return BadRequest(result.Errors);
 
-            var roleResult = await _userManager.AddToRoleAsync(user, "Member");
+            var roleResult = await _userManager.AddToRoleAsync(user, "Estudiante");
             
             if (!roleResult.Succeeded) return BadRequest(result.Errors);
 

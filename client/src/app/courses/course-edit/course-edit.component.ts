@@ -18,6 +18,7 @@ import { MembersService } from 'src/app/_services/members.service';
 })
 export class CourseEditComponent implements OnInit {
   courses: Partial<Course[]>;
+
   //usar edit form en componente ts
   @ViewChild('editForm') editForm: NgForm;
   //@Input() course: Course;
@@ -25,6 +26,16 @@ export class CourseEditComponent implements OnInit {
   course: Course;
   //user: User;
   //Acceder a eventos del navedaor
+
+  categoryList = [ 
+    {value: 'Administracion', display: 'Administración'},
+    {value: 'Idiomas', display: 'Idiomas'},
+    {value: 'Medicina', display: 'Medicina'},
+    {value: 'Negocios', display: 'Negocios'},
+    {value: 'Superacion', display: 'Superación'},
+    {value: 'Informatica', display: 'Informática'},
+    {value: 'Artes', display: 'Artes'},
+    {value: 'Ingenieria', display: 'Ingeniería'}];
   @HostListener('window:beforeunload', ['$event']) unloadNotification($event: any){
     if (this.editForm.dirty){
       $event.returnValue=true;
@@ -42,6 +53,8 @@ export class CourseEditComponent implements OnInit {
     this.getCoursesNofilters();
     
   }
+
+  
 
   getCoursesNofilters(){
     this.coursesService.getCoursesNoFilter().subscribe(courses => {

@@ -96,6 +96,7 @@ export class CourseDetailComponent implements OnInit {
   }
 
   addCourse(course: Course){
+    this.playSuccess();
     this.coursesService.addEnroll(course.name).subscribe(() => {
       this.toastr.success('Te has inscrito al curso');
     })
@@ -104,6 +105,15 @@ export class CourseDetailComponent implements OnInit {
   pageChanged(event: any) {
     this.pageNumber = event.page;
     this.loadUsersEnrolled();
+  }
+
+  playSuccess(){
+    //console.log("Playing Sound");
+    let audio = new Audio();
+    //Can externalize the variables
+    audio.src = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/success.mp3";
+    audio.load();
+    return audio.play() ;
   }
 
 }

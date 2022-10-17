@@ -1,6 +1,6 @@
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 <div class="text-center mt-3">
-    <h2>{{predicate === 'liked' ? 'Miembros que me gustan' : 'Miembro que les gusto'}}</h2>
+    <h2>{{predicate === 'liked' ? 'Mi grupo de estudio' : 'Miembros que me agregaron su grupo de estudio'}}</h2>
 </div>
 
 <div class="container mt-3">
@@ -9,11 +9,11 @@
 
             <button class="btn btn-primary" btnRadio="liked" 
             [(ngModel)]="predicate" 
-            (click)="loadLikes()">Miembros que me gustan</button>
+            (click)="loadLikes()">Mi grupo de estudio</button>
 
             <button class="btn btn-primary" btnRadio="likedBy" 
             [(ngModel)]="predicate" 
-            (click)="loadLikes()">Miembros que les gusto</button>
+            (click)="loadLikes()">Miembros que me agregaron a su grupo de estudio</button>
 
         </div>
     </div>

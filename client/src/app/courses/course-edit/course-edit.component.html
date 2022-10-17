@@ -31,7 +31,7 @@
                     </div> 
                     <div>
                         <strong>Duracion:</strong>
-                        <p><i class="fa fa-clock mr-2"></i>{{course.duration}}</p>
+                        <p><i class="fa fa-clock mr-2"></i>{{course.duration}}  semana/s</p>
                     </div>  
                     <div>
                         <strong>Fecha de creacion:</strong>
@@ -52,15 +52,22 @@
                  <tab heading='Info de {{course.name}}'>
                      <form #editForm="ngForm" id="editForm" (ngSubmit)="updateCourse()">
                         <h4>Nombre del curso</h4>
-                        <textarea class="form-control" [(ngModel)]="course.name" name="name" rows="6"></textarea>
+                        <textarea class="form-control" [(ngModel)]="course.name" name="name" rows="1"></textarea>
                         <h4>Descripcion</h4>
                         <textarea class="form-control" [(ngModel)]="course.description" name="description" rows="6"></textarea>
                         <h4 class="mt-2">Categoria</h4>
-                        <textarea class="form-control" [(ngModel)]="course.category" name="category" rows="6"></textarea>
+                       
+                        <select name="category" [(ngModel)]="course.category" class="form-control">
+                            <option *ngFor="let category of categoryList" [value]="category.value">
+                                {{category.display}}
+                            </option>
+                        </select>
+                        
+
                         <h4 class="mt-2">Institucion</h4>
-                        <textarea class="form-control" [(ngModel)]="course.institution" name="institution" rows="6"></textarea>
-                        <h4 class="mt-2">Duracion</h4>
-                        <textarea class="form-control" [(ngModel)]="course.duration" name="duration" rows="6"></textarea>
+                        <textarea class="form-control" [(ngModel)]="course.institution" name="institution" rows="1"></textarea>
+                        <h4 class="mt-2">Duracion semana/s</h4>
+                        <textarea class="form-control" [(ngModel)]="course.duration" name="duration" rows="1"></textarea>
                         
                      </form>
                      

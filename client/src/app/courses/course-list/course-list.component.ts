@@ -20,11 +20,14 @@ export class CourseListComponent implements OnInit {
   course:Course;
 
   categoryList = [ 
-  {value: 'Cultura', display: 'Cultura'},
-  {value: 'Cultura2', display: 'Cultura2'},
-  {value: 'business', display: 'Negocios'},
-  {value: 'art', display: 'Artes'},
-  {value: 'engineering', display: 'Ingenieria'}];
+    {value: 'Administracion', display: 'Administración'},
+    {value: 'Idiomas', display: 'Idiomas'},
+    {value: 'Medicina', display: 'Medicina'},
+    {value: 'Negocios', display: 'Negocios'},
+    {value: 'Superacion', display: 'Superación'},
+    {value: 'Informatica', display: 'Informática'},
+    {value: 'Artes', display: 'Artes'},
+    {value: 'Ingenieria', display: 'Ingeniería'}];
 
   constructor(private coursesService: CoursesService) {
     this.courseParams = this.coursesService.getCourseParams();
@@ -44,13 +47,32 @@ export class CourseListComponent implements OnInit {
     })
   }
   resetFilters(){
+
     this.courseParams = this.coursesService.resetCourseParams();
+    this.playError();
     this.loadCourses();
   }
   pageChanged(event: any) {
     this.courseParams.pageNumber = event.page;
     this.coursesService.setCourseParams(this.courseParams);
     this.loadCourses();
+  }
+
+  playSuccess(){
+    //console.log("Playing Sound");
+    let audio = new Audio();
+    //Can externalize the variables
+    audio.src = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/success.mp3";
+    audio.load();
+    return audio.play() ;
+  }
+  playError(){
+    //console.log("Playing Sound");
+    let audio = new Audio();
+    //Can externalize the variables
+    audio.src = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/error.mp3";
+    audio.load();
+    return audio.play() ;
   }
 
 }

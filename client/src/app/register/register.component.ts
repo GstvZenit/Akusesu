@@ -75,7 +75,8 @@ export class RegisterComponent implements OnInit {
   register(){
     
     this.accountService.register(this.registerForm.value).subscribe(response => {
-      this.router.navigateByUrl('/members');
+      this.router.navigateByUrl('/courses');
+      this.playSuccess();
       this.cancel();
     }, error => {
       this.validationErrors =error;
@@ -86,8 +87,24 @@ export class RegisterComponent implements OnInit {
 
   cancel(){
    this.cancelRegister.emit(false);
+   this.playError();
   }
-
+  playSuccess(){
+    //console.log("Playing Sound");
+    let audio = new Audio();
+    //Can externalize the variables
+    audio.src = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/success.mp3";
+    audio.load();
+    return audio.play() ;
+  }
+  playError(){
+    //console.log("Playing Sound");
+    let audio = new Audio();
+    //Can externalize the variables
+    audio.src = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/error.mp3";
+    audio.load();
+    return audio.play() ;
+  }
  
 
 }

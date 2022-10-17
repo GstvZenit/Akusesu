@@ -49,6 +49,21 @@ export class MemberListComponent implements OnInit {
     this.memberService.setUserParams(this.userParams);
     this.loadMembers();
   }
-
+  playSuccess(){
+    //console.log("Playing Sound");
+    let audio = new Audio();
+    //Can externalize the variables
+    audio.src = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/success.mp3";
+    audio.load();
+    return audio.play() ;
+  }
+  playError(){
+    //console.log("Playing Sound");
+    let audio = new Audio();
+    //Can externalize the variables
+    audio.src = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/error.mp3";
+    audio.load();
+    return audio.play() ;
+  }
   
 }
